@@ -1,0 +1,9 @@
+node_modules
+dist
+.DS_Store
+*.local
+components.d.ts
+
+# local-only, not part of the web deck
+speaker-notes.txt
+*.pdf

@@ -1,0 +1,271 @@
+/* ---------------------------------------------------------------
+   Podostemum organ-identity deck — shared styling
+   Light academic palette, designed to read on projector and in print
+   --------------------------------------------------------------- */
+
+:root {
+  --ink:        #1e293b;
+  --ink-soft:   #475569;
+  --ink-faint:  #94a3b8;
+  --rule:       #e2e8f0;
+
+  --teal:       #0d9488;
+  --teal-bg:    #f0fdfa;
+  --sky:        #0369a1;
+  --sky-bg:     #f0f9ff;
+  --amber:      #b45309;
+  --amber-bg:   #fffbeb;
+  --rose:       #be123c;
+  --rose-bg:    #fff1f2;
+  --violet:     #6d28d9;
+  --violet-bg:  #f5f3ff;
+  --moss:       #15803d;
+  --moss-bg:    #f0fdf4;
+  --slate-bg:   #f8fafc;
+}
+
+/* Global type scale — the default is too large for content-dense slides */
+.slidev-layout {
+  color: var(--ink);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  padding: 2.2rem 2.6rem;
+}
+
+.slidev-layout h1 {
+  color: var(--teal) !important;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-size: 1.75rem !important;
+  line-height: 1.15;
+  margin-bottom: 0.35rem;
+}
+
+.slidev-layout h2 { font-size: 1.35rem; line-height: 1.2; }
+
+.slidev-layout p  { margin: 0.4rem 0; }
+.slidev-layout ul { padding-left: 1.05rem; }
+.slidev-layout li { margin-bottom: 0.28rem; }
+
+.slidev-layout code {
+  font-size: 0.9em;
+  background: #f1f5f9;
+  padding: 0.05rem 0.25rem;
+  border-radius: 3px;
+}
+
+.slidev-layout h1 + p {
+  color: var(--ink-soft);
+  opacity: 1;
+}
+
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.slidev-layout h3 {
+  font-size: 0.92rem;
+  margin-bottom: 0.3rem;
+  margin-top: 0;
+}
+
+/* Section dividers and the closing slide keep the larger scale */
+.slidev-layout.section h1,
+.slidev-layout.statement h1,
+.slidev-layout.cover h1,
+.slidev-layout.center h1 {
+  font-size: 2.4rem !important;
+}
+
+.slidev-layout a {
+  color: var(--sky);
+}
+
+.slidev-layout em,
+.slidev-layout i {
+  font-style: italic;
+}
+
+/* --- deck of cards ------------------------------------------------ */
+
+.card {
+  background: var(--slate-bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.75rem 0.95rem;
+}
+
+.card > :first-child { margin-top: 0; }
+.card > :last-child  { margin-bottom: 0; }
+
+.card-teal   { background: var(--teal-bg);   border-left: 4px solid var(--teal);   border-radius: 4px; }
+.card-sky    { background: var(--sky-bg);    border-left: 4px solid var(--sky);    border-radius: 4px; }
+.card-amber  { background: var(--amber-bg);  border-left: 4px solid var(--amber);  border-radius: 4px; }
+.card-rose   { background: var(--rose-bg);   border-left: 4px solid var(--rose);   border-radius: 4px; }
+.card-violet { background: var(--violet-bg); border-left: 4px solid var(--violet); border-radius: 4px; }
+.card-moss   { background: var(--moss-bg);   border-left: 4px solid var(--moss);   border-radius: 4px; }
+
+.card-teal, .card-sky, .card-amber, .card-rose, .card-violet, .card-moss {
+  border-top: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 0.7rem 0.9rem;
+}
+
+/* --- typographic helpers ----------------------------------------- */
+
+.kicker {
+  color: var(--ink-faint);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.lede   { color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 0.9rem; }
+.fine   { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.45; }
+.finer  { font-size: 0.72rem; color: var(--ink-soft); line-height: 1.4; }
+
+.slidev-layout ul { margin-top: 0.25rem; }
+.slidev-layout li { margin-bottom: 0.3rem; }
+
+.tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: var(--ink-soft);
+  vertical-align: middle;
+}
+
+.tag-teal  { background: #ccfbf1; color: #0f766e; }
+.tag-amber { background: #fef3c7; color: #92400e; }
+.tag-rose  { background: #ffe4e6; color: #9f1239; }
+
+/* --- tables ------------------------------------------------------- */
+
+table.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+table.tbl th {
+  background: #f1f5f9;
+  color: var(--ink);
+  text-align: left;
+  font-weight: 600;
+  padding: 0.45rem 0.6rem;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+table.tbl td {
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+table.tbl tr:last-child td { border-bottom: none; }
+
+/* --- flow diagrams (hand-built; renders reliably in PDF export) ---- */
+
+.flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.node {
+  border-radius: 5px;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.68rem;
+  line-height: 1.3;
+  background: var(--slate-bg);
+  border: 1px solid #cbd5e1;
+  flex: 1;
+  min-width: 0;
+}
+
+.node b { display: block; font-size: 0.72rem; color: var(--ink); }
+.node span { color: var(--ink-soft); }
+
+.node-teal   { background: var(--teal-bg);   border-color: #5eead4; }
+.node-sky    { background: var(--sky-bg);    border-color: #7dd3fc; }
+.node-amber  { background: var(--amber-bg);  border-color: #fcd34d; }
+.node-rose   { background: var(--rose-bg);   border-color: #fda4af; }
+.node-violet { background: var(--violet-bg); border-color: #c4b5fd; }
+.node-moss   { background: var(--moss-bg);   border-color: #86efac; }
+
+.node-mid { flex: 0.55; }
+
+/* --- figure credits ---------------------------------------------- */
+
+.cred {
+  font-size: 0.6rem;
+  line-height: 1.35;
+  color: #94a3b8;
+  margin-top: 0.3rem;
+}
+
+.slidev-layout img { border-radius: 5px; }
+
+/* --- reference lists ---------------------------------------------- */
+
+.reflist {
+  column-count: 2;
+  column-gap: 1.6rem;
+  font-size: 0.66rem;
+  line-height: 1.45;
+  color: #475569;
+  margin-top: 0.4rem;
+}
+
+.reflist > div {
+  break-inside: avoid;
+  margin-bottom: 0.42rem;
+  padding-left: 1.35rem;
+  text-indent: -1.35rem;
+}
+
+.refn {
+  display: inline-block;
+  width: 1.1rem;
+  color: #0d9488;
+  font-weight: 600;
+}
+
+.slidev-layout sup {
+  color: #0d9488;
+  font-size: 0.68em;
+  font-weight: 600;
+  padding-left: 0.05em;
+}
+
+.arrow {
+  align-self: center;
+  color: var(--ink-faint);
+  font-size: 0.9rem;
+  flex: 0 0 auto;
+  padding: 0 0.1rem;
+}
+
+.stage-row {
+  display: grid;
+  grid-template-columns: 2.1rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.stage-num {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  line-height: 1;
+  padding-top: 0.1rem;
+}
