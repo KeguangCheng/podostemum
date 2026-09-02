@@ -7,3 +7,9 @@ components.d.ts
 # local-only, not part of the web deck
 speaker-notes.txt
 *.pdf
+
+# local scratch scripts, not part of the web deck
+*.mjs
+
+# QC reports live in the Podostemaceae folder, not in the web deck
+*multiqc_report.html

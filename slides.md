@@ -39,6 +39,11 @@ A comparative de novo transcriptome strategy for testing “fuzzy morphology”
 <span class="tag">Computational plan</span>
 </div>
 
+<div class="pt-5 text-slate-500" style="font-size:0.95rem; line-height:1.55">
+Keguang Cheng &nbsp;·&nbsp; Zumajo Lab<br/>
+September 3, 2026
+</div>
+
 ---
 
 # What this deck covers
@@ -797,14 +802,14 @@ Domain architecture is more robust than raw similarity for our purpose: a diverg
 
 Map each library's clean reads back onto the de novo Unigene reference; compute **TPM** (or FPKM) for unbiased expression estimates across all nine samples on one scale.
 
-<div class="kicker mt-4">Quality gates before proceeding</div>
+<div class="kicker mt-4">First look at the matrix</div>
 
-- **Mapping rate per library** — a low outlier flags a problem replicate
-- **PCA and sample correlation heatmap** — replicates must cluster by tissue, not by batch; whether “stem” falls between L and R or apart from both is itself a result
+- **Mapping rate per library** — confirms the pooled assembly represents all three tissues
 - **Library size and normalisation factors**
+- **PCA and sample correlation** — where does <b>“stem”</b> fall relative to root and leaf?
 
-<div class="card-rose mt-3">
-<b>If replicates do not cluster by tissue, I stop here.</b> Every downstream result would be built on an unreliable grouping, and the honest response is to revisit the dissection rather than press on.
+<div class="card-violet mt-3">
+<b>Either answer is a result.</b> “Stem” sitting <i>between</i> root and leaf reads as a continuum — the fuzzy-morphology prediction. “Stem” sitting <i>apart</i> from both reads as a portion with an expression identity of its own. This is the first point in the pipeline where the data can answer Q1 directly.
 </div>
 
 </div>
