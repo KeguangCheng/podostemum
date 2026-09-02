@@ -62,7 +62,7 @@ A comparative de novo transcriptome strategy for testing “fuzzy morphology”
 ### Where we start
 
 <div class="card mb-2 fine">
-<b>Data in hand.</b> Nine libraries — root, leaf and mixed, three biological replicates each. NovaSeq X Plus, PE150, <b>non-stranded</b> poly-A. Downloaded and on the HPC; QC report received for the six dissected samples.
+<b>Data in hand.</b> Nine libraries — root, “stem” and leaf, three biological replicates each. NovaSeq X Plus, PE150, <b>non-stranded</b> poly-A. Downloaded and on the HPC; the vendor QC report covers six of the nine.
 </div>
 
 <div class="card mb-2 fine">
@@ -288,7 +288,7 @@ Morphological novelty does not require a novel genome — decoupling and rewirin
 
 <div class="card-teal">
 <h3>Q1 · Homology</h3>
-The two dissected tissues — <b>root / anchoring zone</b> and <b>dithecous leaf</b> — what underlying tissue homology do they show at whole-transcriptome scale?
+The three sampled portions — <b>anchoring thallus</b>, the vegetative <b>“stem”</b>, and the <b>dithecous leaf</b> — what underlying tissue homology do they show at whole-transcriptome scale?
 </div>
 
 <div class="card-sky">
@@ -315,23 +315,23 @@ Q1 and Q2 are testable with this dataset. Q3 is exploratory.
 
 <div class="col-span-3">
 
-<div class="lede" style="margin-bottom:0.5rem">Root and leaf were dissected apart, three biological replicates each; the mixed libraries are leaf and root together, not separated. <b>All nine re-run here with one tool</b> — the vendor reported only the six dissected ones, and numbers from two different pipelines are not comparable.</div>
+<div class="lede" style="margin-bottom:0.5rem">Three portions of the plant, three biological replicates each. <b>All nine re-run here with one tool</b> — the vendor reported only six, and numbers from two different pipelines are not comparable.</div>
 
 <table class="tbl">
 <thead><tr><th>Tissue</th><th>Library</th><th>Raw reads</th><th>Raw bases</th><th>Q20</th><th>Q30</th><th>GC</th><th>Dup</th></tr></thead>
 <tbody>
 <tr><td><b>Root</b></td><td>PR1 / PR2 / PR3</td><td>88.3 / 81.9 / 82.9 M</td><td>13.3 / 12.3 / 12.4 G</td><td>99.2 %</td><td>96.6 %</td><td>47.5 / 48.1 / 47.6</td><td>75–79 %</td></tr>
 <tr><td><b>Leaf</b></td><td>PL1 / PL2 / PL3</td><td>87.1 / 79.4 / 81.3 M</td><td>13.1 / 11.9 / 12.2 G</td><td>99.3 %</td><td>96.9 %</td><td>44.4 / 45.4 / 44.6</td><td>71–78 %</td></tr>
-<tr><td><b>Mixed</b></td><td>P1 / P2 / P3</td><td>95.4 / 100.1 / 89.5 M</td><td>14.3 / 15.0 / 13.4 G</td><td>99.3 %</td><td>97.1 %</td><td><b>49.2 / 49.8 / 49.8</b></td><td><b>41–61 %</b></td></tr>
+<tr><td><b>“Stem”</b></td><td>P1 / P2 / P3</td><td>95.4 / 100.1 / 89.5 M</td><td>14.3 / 15.0 / 13.4 G</td><td>99.3 %</td><td>97.1 %</td><td><b>49.2 / 49.8 / 49.8</b></td><td><b>41–61 %</b></td></tr>
 </tbody>
 </table>
 
 <div class="card-teal mt-2 fine">
-My six numbers reproduce the vendor's to the second decimal, so the pipeline agrees with theirs — which is what makes the three new rows trustworthy.
+My six numbers reproduce the vendor's to the second decimal, so the pipeline agrees with theirs — which is what makes the three unreported rows trustworthy.
 </div>
 
 <div class="card-amber mt-2 fine">
-The mixed libraries are <b>not</b> intermediate: higher GC than either dissected tissue, and roughly half the duplication rate.
+The “stem” libraries are not intermediate between the other two: higher GC than either, and roughly half the duplication rate.
 </div>
 
 </div>
@@ -345,45 +345,36 @@ The mixed libraries are <b>not</b> intermediate: higher GC than either dissected
 
 ---
 
-# What changed from the written proposal
+# The third portion is the one in question
 
-<div class="lede">The proposal assumed three dissected partitions. The data has two, plus a mixed class.</div>
+<div class="lede">All three partitions the proposal assumed are present. P1–P3 are the vegetative portion, sampled in its own right.</div>
 
 <div class="grid grid-cols-2 gap-7">
 
 <div>
 
-<div class="card-rose mb-3">
-<b>There is no separate stem partition.</b> The proposal's partition B — the putative vegetative axis — carried the CLE41 / PXY / WOX4 module and was the one place we expected boundaries to <i>hold</i>. It was the internal control.
+<div class="card-teal mb-3">
+<b>How the project names them.</b> The thallus that attaches to the rock, called <i>“root”</i>; the vegetative portion, called <i>“stem”</i>; and the leaves. The quotation marks are not incidental — naming that middle portion is the question, not the premise.
 </div>
 
 <div class="card mb-3">
-<b>What survives.</b> The central prior finding — ectopic <i>STM</i> and <i>WUS</i> near root tips, <i>STM</i>/<i>ARP</i> co-expression in the leaf<sup>12</sup> — is a <b>root-versus-leaf</b> claim, and that contrast is intact.
+<b>What that gives us.</b> The vascular module — <i>CLE41/44</i>, <i>PXY</i>, <i>WOX4</i>, <i>HB8</i><sup>25</sup> — has a tissue of its own. Whether a stem-like identity is <i>held</i> anywhere in this plant can be measured, not inferred.
 </div>
 
-<div class="card-amber">
-<b>What weakens.</b> The vascular module has no partition of its own. We can ask whether it is expressed and where, but not whether a stem-like tissue holds a clean vascular identity.
+<div class="card-violet">
+<b>The contrast is symmetric.</b> Root and leaf test whether boundaries collapse; the middle portion tests whether any boundary is retained. Three groups, three pairwise contrasts, three replicates each.
 </div>
 
 </div>
 
 <div>
 
-<div class="card-teal mb-3">
-<h3>The mixed samples were meant to cover for that</h3>
-If a mixed sample is only leaf plus root, its profile is a linear combination of the two: <b>mixed ≈ α·L + (1−α)·R</b>, one α per sample.
-</div>
-
 <div class="card mb-3">
-Fit it per gene, look at the <b>residuals</b>. Genes the model cannot explain are expressed in material the mixed samples contain but the clean L and R fractions do not — the <b>transition zone</b> the dissection could not isolate.
+<b>No published expectation to match.</b> Katayama et al. found ectopic <i>STM</i> and <i>WUS</i> near root tips and <i>STM</i>/<i>ARP</i> co-expression in the leaf<sup>12</sup>. Neither result sampled a vegetative axis, so for this portion the marker panel is a genuine prediction rather than a replication.
 </div>
 
-<div class="card-violet">
-Three against three is enough to fit it. That recovers part of what partition B was for, and unlike partition B it can be checked before being used.
-</div>
-
-<div class="card-rose mt-3">
-<b>So I checked the premise first.</b> Next slide.
+<div class="card-amber">
+<b>The one thing worth pinning down.</b> Where the cut falls. In a plant whose whole interest is that organ boundaries are indistinct, the line between “stem” and thallus, and between “stem” and leaf base, is drawn under the scope by judgement. How it was drawn sets how far the identity call can be pushed.
 </div>
 
 </div>
@@ -392,7 +383,7 @@ Three against three is enough to fit it. That recovers part of what partition B 
 
 ---
 
-# The mixture premise fails its first test
+# The three tissues separate before any analysis
 
 <div class="lede">Per-sequence GC from my own QC run. Three libraries per tissue, one line each.</div>
 
@@ -404,8 +395,8 @@ Three against three is enough to fit it. That recovers part of what partition B 
 
 <div class="col-span-2">
 
-<div class="card-rose mb-2 fine">
-<b>A mixture cannot sit outside its components.</b> For any leaf fraction α the mixed libraries must fall <i>between</i> root and leaf. Reads below 40 % GC: leaf <b>25–29 %</b>, root <b>15–16 %</b>, mixed <b>10–12 %</b> — below both. No α gives that. Duplication rate agrees independently: <b>41–61 %</b> mixed vs <b>71–79 %</b> dissected.
+<div class="card-violet mb-2 fine">
+<b>“Stem” is the most distinct of the three.</b> GC <b>49.2–49.8 %</b> against leaf 44.4–45.4 and root 47.5–48.1; duplication <b>41–61 %</b> against 71–79 % in both others; plastid reads <b>0.25–0.45 %</b>, lowest of the nine. All three replicates agree. Least plastid fits the portion that photosynthesises least; least duplication means the most complex library — many distinct transcripts rather than a few dominant ones.
 </div>
 
 <div class="card-amber fine">
@@ -417,7 +408,7 @@ Three against three is enough to fit it. That recovers part of what partition B 
 </div>
 
 <div class="card-teal mt-2 fine">
-Under identical settings, <b>GC</b>, <b>duplication</b> and <b>plastid signal</b> all put the mixed libraries outside both dissected tissues — and the plastid result holds in both alignment modes.
+<b>Read with care.</b> Duplication rate and GC also track RNA input and library batch, and the replicates of one tissue were likely prepared together. Three independent measures agreeing is suggestive, but this is a hypothesis for the differential expression step to test — not a result on its own.
 </div>
 
 ---
@@ -485,16 +476,16 @@ Under identical settings, <b>GC</b>, <b>duplication</b> and <b>plastid signal</b
 <td>In the SAM-less state, do the stem-cell maintenance network and the terminal leaf-differentiation network show graded co-expression and overlap?<sup>17</sup></td>
 </tr>
 <tr>
-<td><b>Mixed</b><br/><span class="finer">count TBC</span></td>
-<td>Leaf and root together, including whatever lies between them</td>
-<td>All four modules, plus the vascular set <i>CLE41/44</i>, <i>PXY</i>, <i>WOX4</i>, <i>HB8</i><sup>25</sup></td>
-<td>Does a two-component mixture of L and R explain these samples? Genes with systematic positive residuals are candidates for transition-zone expression.</td>
+<td><b>S · “Stem”</b><br/><span class="finer">n = 3</span></td>
+<td>Vegetative portion between thallus and leaf; identity undetermined, which is the point of sampling it</td>
+<td>Vascular set <i>CLE41/44</i>, <i>PXY</i>, <i>WOX4</i>, <i>HB8</i><sup>25</sup>, read against all four modules</td>
+<td>Is a procambial / vascular identity <i>held</i> here while it collapses elsewhere? Or does this portion also carry root and leaf markers together?</td>
 </tr>
 </tbody>
 </table>
 
 <div class="card-amber mt-4">
-<b>The design is now asymmetric in a way the proposal was not.</b> Both dissected classes test for boundary <i>collapse</i>; neither tests for boundary <i>retention</i>, because the tissue that would have done that was not sampled separately. The mixture residuals are the substitute, and they are weaker evidence — a modelling result rather than a measurement.
+<b>The three rows are not symmetric in what they risk.</b> Root and leaf have published expectations to meet<sup>12</sup>; the middle portion has none, so whatever it shows is a first observation rather than a confirmation. That makes it the most informative row and the least anchored one.
 </div>
 
 ---
@@ -584,7 +575,7 @@ Assembly quality caps everything downstream, and de novo assembly has no referen
 <div class="col-span-3">
 
 <div class="card-rose fine">
-<b>The QC narrowed this down.</b> The root–leaf GC gap is a <b>low-GC shoulder in the leaf</b> libraries, not extra high-GC material in the root. The open question moved to the <b>mixed</b> libraries, which sit outside the root–leaf range entirely.
+<b>The QC narrowed this down.</b> The root–leaf GC gap is a <b>low-GC shoulder in the leaf</b> libraries, not extra high-GC material in the root — and that shoulder is where any foreign transcripts would show up first.
 </div>
 
 <div class="grid grid-cols-2 gap-5 mt-3">
@@ -637,7 +628,7 @@ Assembly quality caps everything downstream, and de novo assembly has no referen
 
 No reference genome exists for *P. ceratophyllum*, so the transcript reference has to be built from the reads themselves.
 
-**Trinity (v2.x)**<sup>24</sup> — de Bruijn graph assembly, run on **all libraries pooled** (root, leaf and mixed), so that one common reference supports every comparison.
+**Trinity (v2.x)**<sup>24</sup> — de Bruijn graph assembly, run on **all nine libraries pooled** (root, “stem” and leaf), so that one common reference supports every comparison.
 
 <div class="card mt-4">
 Minimum k-mer coverage threshold set permissively, so <b>low-abundance regulatory transcripts</b> are still reconstructed. Transcription factors are exactly the class we cannot afford to lose.
@@ -650,7 +641,7 @@ Minimum k-mer coverage threshold set permissively, so <b>low-abundance regulator
 ### Decisions to settle
 
 <div class="card mb-3">
-<b>Pooled vs per-tissue assembly.</b> Pooling gives one coordinate system for quantification; per-tissue assembly recovers tissue-specific isoforms but complicates comparison. I favour <b>pooled</b>, with per-tissue assemblies kept as a diagnostic check only. Including the mixed samples in the pool matters here — they are the only libraries containing transition-zone transcripts.
+<b>Pooled vs per-tissue assembly.</b> Pooling gives one coordinate system for quantification; per-tissue assembly recovers tissue-specific isoforms but complicates comparison. I favour <b>pooled</b>, with per-tissue assemblies kept as a diagnostic check only. The “stem” libraries matter most in the pool — they are the least duplicated of the nine, so they contribute the largest share of distinct transcripts.
 </div>
 
 <div class="card mb-3">
@@ -804,12 +795,12 @@ Domain architecture is more robust than raw similarity for our purpose: a diverg
 
 ### RSEM / Salmon → the expression matrix
 
-Map each library's clean reads back onto the de novo Unigene reference; compute **TPM** (or FPKM) for unbiased expression estimates across every sample, dissected and mixed alike.
+Map each library's clean reads back onto the de novo Unigene reference; compute **TPM** (or FPKM) for unbiased expression estimates across all nine samples on one scale.
 
 <div class="kicker mt-4">Quality gates before proceeding</div>
 
 - **Mapping rate per library** — a low outlier flags a problem replicate
-- **PCA and sample correlation heatmap** — replicates must cluster by tissue, not by batch; mixed samples should sit between L and R, not off on their own
+- **PCA and sample correlation heatmap** — replicates must cluster by tissue, not by batch; whether “stem” falls between L and R or apart from both is itself a result
 - **Library size and normalisation factors**
 
 <div class="card-rose mt-3">
@@ -820,18 +811,18 @@ Map each library's clean reads back onto the de novo Unigene reference; compute 
 
 <div>
 
-### DESeq2 — one primary contrast
+### DESeq2 — three contrasts
 
 <div class="grid grid-cols-1 gap-2 mb-3 text-center fine">
-  <div class="card-teal"><b>Root</b> <span class="text-slate-400">vs</span> <b>Leaf</b> &nbsp;·&nbsp; the whole test, 3 v 3</div>
+  <div class="card-teal"><b>Root</b> <span class="text-slate-400">vs</span> <b>Leaf</b> &nbsp;·&nbsp; <b>Leaf</b> <span class="text-slate-400">vs</span> <b>“Stem”</b> &nbsp;·&nbsp; <b>“Stem”</b> <span class="text-slate-400">vs</span> <b>Root</b></div>
 </div>
 
 <div class="fine mb-3">
-Benjamini–Hochberg adjusted <i>q</i> &lt; 0.05 and |log2FoldChange| ≥ 1; tissue-specific up-regulated clusters then go to GO and KEGG enrichment. The mixed samples are held out of this contrast and used for the mixture-residual analysis instead — putting them in as a third group would only blur the comparison.
+Benjamini–Hochberg adjusted <i>q</i> &lt; 0.05 and |log2FoldChange| ≥ 1, with a likelihood-ratio test across all three tissues alongside the pairwise contrasts; tissue-specific up-regulated clusters then go to GO and KEGG enrichment.
 </div>
 
 <div class="card-amber">
-<b>What DEG analysis cannot answer.</b> Pairwise DEGs answer <i>“where is this gene higher?”</i> — not <i>“what organ is this?”</i> Fuzzy morphology predicts <b>co-expression</b>: a gene at comparable levels in both root and leaf is absent from the DEG list entirely, yet is precisely the evidence for boundary collapse. With only one contrast left, this stops being a caveat and becomes the main reason the analysis cannot end here.
+<b>What DEG analysis cannot answer.</b> Pairwise DEGs answer <i>“where is this gene higher?”</i> — not <i>“what organ is this?”</i> Fuzzy morphology predicts <b>co-expression</b>: a gene at comparable levels in both root and leaf is absent from the DEG list entirely, yet is precisely the evidence for boundary collapse. Three contrasts help, but they do not fix this — it is the main reason the analysis cannot end at the DEG table.
 </div>
 
 </div>
@@ -855,7 +846,7 @@ If the SAM module and the leaf-determinacy module have <b>fused into a single co
 </div>
 
 <div class="card-amber mt-3">
-<b>Caveat.</b> WGCNA is designed for many samples. Even counting the mixed samples we are in the low teens, so the module structure will be coarse and must be treated as exploratory rather than as a confirmed network.
+<b>Caveat.</b> WGCNA is designed for many samples. Nine libraries is well below the usual range, so the module structure will be coarse and must be treated as exploratory rather than as a confirmed network.
 </div>
 
 </div>
@@ -865,11 +856,11 @@ If the SAM module and the leaf-determinacy module have <b>fused into a single co
 ### Three converging views
 
 <div class="card-violet mb-2 fine">
-<b>1 · Marker atlas.</b> Four canonical modules × root, leaf and mixed, plotted in <b>absolute TPM</b> rather than fold change. This is the figure that answers Q2, and most likely the central figure of the paper.
+<b>1 · Marker atlas.</b> Four canonical modules × root, “stem” and leaf, plotted in <b>absolute TPM</b> rather than fold change. This is the figure that answers Q2, and most likely the central figure of the paper.
 </div>
 
 <div class="card-violet mb-2 fine">
-<b>2 · Specificity index.</b> A per-gene τ-type tissue-specificity index across root and leaf — turning “fuzzy vs discrete” from a verbal claim into a <b>distribution</b>. Two tissues is the minimum τ needs, so this is a coarser measure than it would have been with three.
+<b>2 · Specificity index.</b> A per-gene τ-type tissue-specificity index across the three tissues — turning “fuzzy vs discrete” from a verbal claim into a <b>distribution</b>. Three tissues is thin for τ but workable; two would not have been.
 </div>
 
 <div class="card-violet mb-2 fine">
@@ -985,7 +976,7 @@ NAC-family transcription factors act both in apical meristem development and CUC
 
 <div class="stage-row">
 <div class="stage-num">2</div>
-<div class="card fine">The dissected classes are <b>root and leaf only</b> — the stem partition the proposal relied on as an internal control was not sampled. Mixture-residual analysis of the mixed samples is the substitute, and it is weaker.</div>
+<div class="card fine">Three portions were sampled, three replicates each. The middle one — the vegetative portion the project can only call <b>“stem”</b> — is where the identity question is sharpest, and it has no prior result to be checked against.</div>
 </div>
 
 <div class="stage-row">

@@ -11,7 +11,7 @@ const STAGES = [
   {
     n: '2', title: 'De novo assembly', tone: 'teal',
     nodes: ['Trinity v2.x', 'CD-HIT-EST', 'BUSCO + ExN50', 'TransDecoder'],
-    detail: 'All libraries pooled — root, leaf and mixed — into one de Bruijn graph assembly, giving a single coordinate system for every downstream comparison. Libraries are non-stranded, so no --SS_lib_type setting applies. CD-HIT-EST at 0.95-0.99 identity yields the Unigene set. Assembly quality read from BUSCO (embryophyta_odb10), ExN50 and read-representation rate together. TransDecoder predicts CDS and peptides.',
+    detail: 'All nine libraries pooled — root, “stem” and leaf — into one de Bruijn graph assembly, giving a single coordinate system for every downstream comparison. Libraries are non-stranded, so no --SS_lib_type setting applies. CD-HIT-EST at 0.95-0.99 identity yields the Unigene set. Assembly quality read from BUSCO (embryophyta_odb10), ExN50 and read-representation rate together. TransDecoder predicts CDS and peptides.',
     risk: 'At ~40M PE reads per library the pooled assembly is memory-bound, so in-silico normalisation is effectively required. And elevated mutation rates in this family depress BUSCO for biological reasons, so it cannot be read alone.',
   },
   {
@@ -23,7 +23,7 @@ const STAGES = [
   {
     n: '4', title: 'Quantification and readout', tone: 'violet',
     nodes: ['RSEM / Salmon', 'DESeq2', 'WGCNA', 'Identity atlas'],
-    detail: 'Reads mapped back onto the Unigene reference for TPM. DESeq2 runs the single root-versus-leaf contrast at q < 0.05 and |log2FC| >= 1. The mixed samples are held out and fitted as a two-component mixture of root and leaf; genes the mixture cannot explain are candidates for transition-zone expression. WGCNA, the marker atlas and a tissue-specificity index complete the readout.',
+    detail: 'Reads mapped back onto the Unigene reference for TPM. DESeq2 runs three pairwise contrasts across the three tissues at q < 0.05 and |log2FC| >= 1, plus a likelihood-ratio test for any tissue effect. WGCNA, the marker atlas and a tissue-specificity index complete the readout.',
     risk: 'DEG analysis answers "where is this gene higher". Fuzzy morphology predicts co-expression — a gene present in both root and leaf appears in no DEG list at all.',
   },
 ]
