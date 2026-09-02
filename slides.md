@@ -5,6 +5,11 @@ info: |
   A comparative de novo transcriptomic strategy for testing "fuzzy morphology"
   in Podostemum ceratophyllum. Analysis plan.
 lineNumbers: false
+fonts:
+  provider: none
+  sans: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif'
+  serif: 'Georgia, "Times New Roman", serif'
+  mono: 'ui-monospace, SFMono-Regular, Menlo, monospace'
 drawings:
   persist: false
 transition: fade
@@ -57,11 +62,11 @@ A comparative de novo transcriptome strategy for testing “fuzzy morphology”
 ### Where we start
 
 <div class="card mb-2 fine">
-<b>Data in hand.</b> Nine paired-end libraries — three partitions × three biological replicates. Sequencing is complete.
+<b>Data in hand.</b> Nine libraries — root, leaf and mixed, three biological replicates each. NovaSeq X Plus, PE150, <b>non-stranded</b> poly-A. Downloaded and on the HPC; QC report received for the six dissected samples.
 </div>
 
 <div class="card mb-2 fine">
-<b>No reference genome</b> for <i>P. ceratophyllum</i>. One genome exists for the entire family: <i>Cladopus chinensis</i>, published 2020<sup>20</sup>.
+<b>No nuclear genome</b> for <i>P. ceratophyllum</i>, and only one for the whole family — <i>Cladopus chinensis</i><sup>20</sup>. Several plastomes exist<sup>15,27,28,30</sup>, but a plastome has ~76 protein-coding genes and none of the nuclear regulators we are after.
 </div>
 
 <div class="card mb-2 fine">
@@ -226,7 +231,7 @@ The character is <b>polarised</b> along the phylogeny: whatever built the podost
 Change severe enough to break the *Bauplan* — hence the “hopeful monsters” framing in the literature<sup>1,2</sup>.
 
 <div class="card-rose mt-4">
-Podostemaceae show <b>elevated nuclear substitution rates</b><sup>14</sup>, plastid genome restructuring and gene loss<sup>15</sup>. Deep rewiring, not gradual tuning.
+Podostemaceae show <b>elevated nuclear substitution rates</b><sup>14</sup> and heavily restructured plastomes — <i>ycf1</i> and <i>ycf2</i> lost, a large <i>trnK</i>–<i>rbcL</i> inversion, one <i>ycf3</i> intron gone<sup>15,27,28,29</sup>. Deep rewiring, not gradual tuning.
 </div>
 
 <div class="card-amber mt-3">
@@ -283,7 +288,7 @@ Morphological novelty does not require a novel genome — decoupling and rewirin
 
 <div class="card-teal">
 <h3>Q1 · Homology</h3>
-The three macroscopically separable partitions — <b>root / anchoring zone</b> (operationally <i>Thallus</i>), <b>putative vegetative stem</b>, and <b>dithecous leaf</b> — what underlying tissue homology do they show at whole-transcriptome scale?
+The two dissected tissues — <b>root / anchoring zone</b> and <b>dithecous leaf</b> — what underlying tissue homology do they show at whole-transcriptome scale?
 </div>
 
 <div class="card-sky">
@@ -304,66 +309,29 @@ Q1 and Q2 are testable with this dataset. Q3 is exploratory.
 
 ---
 
-# The gap this fills
-
-<div class="grid grid-cols-2 gap-7 pt-1">
-
-<div>
-
-<div class="kicker">Genomic resources for Podostemaceae are thin</div>
-
-- Field access is restricted — the family survives only in pristine, fast-flowing water, and many species carry elevated extinction risk<sup>3</sup>
-- Apart from the *Cladopus chinensis* genome<sup>20</sup>, the family has almost **no reference genome or transcriptome data**; *P. ceratophyllum* has none
-
-<div class="card-teal mt-3">
-<b>Why this project is feasible.</b> Material comes from a <b>cultivated NYBG population</b>: consistent developmental stage across replicates, fresh tissue, controlled dissection. It removes the field-access bottleneck that has held the family back.
-</div>
-
-<div class="card mt-2">
-<b>Consequence for the design.</b> With no genome available we build the reference ourselves — deep RNA-seq plus <b>de novo assembly</b><sup>22,23,24</sup>.
-</div>
-
-</div>
-
-<div class="pt-2">
-  <img src="./assets/fig-cladopus.jpg" class="rounded" style="max-height:14.5rem;margin:0 auto" />
-  <div class="cred">Xue et al. (2020) Fig. 1<sup>20</sup> — <i>Cladopus chinensis</i>, the only Podostemaceae species with a published genome: flowering plants in habitat, roots, leaves on sterile and fertile stems</div>
-</div>
-
-</div>
-
----
-
-# Experimental design
+# The dataset, as sequenced
 
 <div class="grid grid-cols-5 gap-6">
 
 <div class="col-span-3">
 
-<div class="grid grid-cols-3 gap-3">
-  <div class="card-moss">
-    <h3>A · <i>Thallus</i></h3>
-    <div class="fine">Root and substrate-anchoring partition.</div>
-    <div class="finer mt-2">Operational name carried over from the original project naming — <b>not</b> a claim that this species has a true thalloid root.</div>
-  </div>
-  <div class="card-sky">
-    <h3>B · Stem</h3>
-    <div class="fine">The minute putative vegetative axis connecting anchoring tissue to the leaf cluster, with visible vascular traces.</div>
-  </div>
-  <div class="card-amber">
-    <h3>C · Leaves</h3>
-    <div class="fine">Distal laminar photosynthetic tissue bearing the dithecous sheath structure.</div>
-  </div>
+<div class="lede" style="margin-bottom:0.5rem">Root and leaf were dissected apart, three biological replicates each; the mixed libraries are leaf and root together, not separated. <b>All nine re-run here with one tool</b> — the vendor reported only the six dissected ones, and numbers from two different pipelines are not comparable.</div>
+
+<table class="tbl">
+<thead><tr><th>Tissue</th><th>Library</th><th>Raw reads</th><th>Raw bases</th><th>Q20</th><th>Q30</th><th>GC</th><th>Dup</th></tr></thead>
+<tbody>
+<tr><td><b>Root</b></td><td>PR1 / PR2 / PR3</td><td>88.3 / 81.9 / 82.9 M</td><td>13.3 / 12.3 / 12.4 G</td><td>99.2 %</td><td>96.6 %</td><td>47.5 / 48.1 / 47.6</td><td>75–79 %</td></tr>
+<tr><td><b>Leaf</b></td><td>PL1 / PL2 / PL3</td><td>87.1 / 79.4 / 81.3 M</td><td>13.1 / 11.9 / 12.2 G</td><td>99.3 %</td><td>96.9 %</td><td>44.4 / 45.4 / 44.6</td><td>71–78 %</td></tr>
+<tr><td><b>Mixed</b></td><td>P1 / P2 / P3</td><td>95.4 / 100.1 / 89.5 M</td><td>14.3 / 15.0 / 13.4 G</td><td>99.3 %</td><td>97.1 %</td><td><b>49.2 / 49.8 / 49.8</b></td><td><b>41–61 %</b></td></tr>
+</tbody>
+</table>
+
+<div class="card-teal mt-2 fine">
+My six numbers reproduce the vendor's to the second decimal, so the pipeline agrees with theirs — which is what makes the three new rows trustworthy.
 </div>
 
-<div class="grid grid-cols-3 gap-3 mt-3 text-center fine">
-  <div class="card"><b>3</b> partitions</div>
-  <div class="card"><b>3</b> replicates each</div>
-  <div class="card"><b>9</b> libraries</div>
-</div>
-
-<div class="card-amber mt-3">
-<b>Statistical note.</b> n = 3 per group is the DESeq2 minimum. It is adequate for the large, consistent effects we expect from organ-identity genes, but underpowered for subtle or variable transcripts. I will report that constraint rather than work around it.
+<div class="card-amber mt-2 fine">
+The mixed libraries are <b>not</b> intermediate: higher GC than either dissected tissue, and roughly half the duplication rate.
 </div>
 
 </div>
@@ -373,6 +341,83 @@ Q1 and Q2 are testable with this dataset. Q3 is exploratory.
   <div class="cred">Wood &amp; Freeman (2017) Fig. 3<sup>3</sup> — morphological variation within <i>P. ceratophyllum</i>, all collected the same day in close proximity. Grid squares are 1 mm. The dissection has to be robust to this much plasticity.</div>
 </div>
 
+</div>
+
+---
+
+# What changed from the written proposal
+
+<div class="lede">The proposal assumed three dissected partitions. The data has two, plus a mixed class.</div>
+
+<div class="grid grid-cols-2 gap-7">
+
+<div>
+
+<div class="card-rose mb-3">
+<b>There is no separate stem partition.</b> The proposal's partition B — the putative vegetative axis — carried the CLE41 / PXY / WOX4 module and was the one place we expected boundaries to <i>hold</i>. It was the internal control.
+</div>
+
+<div class="card mb-3">
+<b>What survives.</b> The central prior finding — ectopic <i>STM</i> and <i>WUS</i> near root tips, <i>STM</i>/<i>ARP</i> co-expression in the leaf<sup>12</sup> — is a <b>root-versus-leaf</b> claim, and that contrast is intact.
+</div>
+
+<div class="card-amber">
+<b>What weakens.</b> The vascular module has no partition of its own. We can ask whether it is expressed and where, but not whether a stem-like tissue holds a clean vascular identity.
+</div>
+
+</div>
+
+<div>
+
+<div class="card-teal mb-3">
+<h3>The mixed samples were meant to cover for that</h3>
+If a mixed sample is only leaf plus root, its profile is a linear combination of the two: <b>mixed ≈ α·L + (1−α)·R</b>, one α per sample.
+</div>
+
+<div class="card mb-3">
+Fit it per gene, look at the <b>residuals</b>. Genes the model cannot explain are expressed in material the mixed samples contain but the clean L and R fractions do not — the <b>transition zone</b> the dissection could not isolate.
+</div>
+
+<div class="card-violet">
+Three against three is enough to fit it. That recovers part of what partition B was for, and unlike partition B it can be checked before being used.
+</div>
+
+<div class="card-rose mt-3">
+<b>So I checked the premise first.</b> Next slide.
+</div>
+
+</div>
+
+</div>
+
+---
+
+# The mixture premise fails its first test
+
+<div class="lede">Per-sequence GC from my own QC run. Three libraries per tissue, one line each.</div>
+
+<div class="grid grid-cols-5 gap-6">
+
+<div class="col-span-3">
+<GcProfiles />
+</div>
+
+<div class="col-span-2">
+
+<div class="card-rose mb-2 fine">
+<b>A mixture cannot sit outside its components.</b> For any leaf fraction α the mixed libraries must fall <i>between</i> root and leaf. Reads below 40 % GC: leaf <b>25–29 %</b>, root <b>15–16 %</b>, mixed <b>10–12 %</b> — below both. No α gives that. Duplication rate agrees independently: <b>41–61 %</b> mixed vs <b>71–79 %</b> dissected.
+</div>
+
+<div class="card-amber fine">
+<b>The leaf shoulder is not plastid — tested.</b> Plastomes run <b>~35 % GC</b><sup>28,30</sup>, so the position fit and the hypothesis was live. Re-mapping in local mode, which lets reads clip past cross-genus mismatch<sup>27,28</sup>, lifted <b>root 25–32 %</b> but <b>leaf only 2–8 %</b>. A 25–29 % shoulder would need ~25 % plastid; these libraries give <b>0.8–4.1 %</b>. The reference works — the shoulder is simply made of something else.
+</div>
+
+</div>
+
+</div>
+
+<div class="card-teal mt-2 fine">
+Under identical settings, <b>GC</b>, <b>duplication</b> and <b>plastid signal</b> all put the mixed libraries outside both dissected tissues — and the plastid result holds in both alignment modes.
 </div>
 
 ---
@@ -415,12 +460,12 @@ Q1 and Q2 are testable with this dataset. Q3 is exploratory.
 
 ---
 
-# Per-partition hypotheses and targets
+# Per-tissue hypotheses and targets
 
 <table class="tbl">
 <thead>
 <tr>
-<th style="width:14%">Partition</th>
+<th style="width:13%">Sample class</th>
 <th style="width:22%">Morphological hypothesis</th>
 <th style="width:24%">Targeted marker set</th>
 <th>Molecular test</th>
@@ -428,28 +473,28 @@ Q1 and Q2 are testable with this dataset. Q3 is exploratory.
 </thead>
 <tbody>
 <tr>
-<td><b>A · Thallus</b></td>
-<td>Root partition combining anchorage, photosynthesis and ectopic shoot-forming potential</td>
+<td><b>R · Root</b><br/><span class="finer">n = 3</span></td>
+<td>Anchoring tissue that also photosynthesises and carries ectopic shoot-forming potential</td>
 <td>RAM markers: <i>WOX5</i>, <i>SHR</i>, <i>SCR</i>, PLT family<br/>Shoot initiation: <i>STM</i>, <i>WUS</i></td>
-<td>Can a coherent root-cap and cortex regulatory network be recovered here? Is ectopic <i>STM</i>/<i>WUS</i> activation associated with shoot initiation in this partition?<sup>12</sup></td>
+<td>Can a coherent root-cap and cortex regulatory network be recovered here? And is <i>STM</i>/<i>WUS</i> present in root tissue at all — the single most direct test of the Katayama result<sup>12</sup>.</td>
 </tr>
 <tr>
-<td><b>B · Vegetative Stem</b></td>
-<td>Central axis of secondary vascular development; transitional structure</td>
-<td>Vascular polarity and stem cells: <i>CLE41/44</i>, <i>PXY</i>, <i>WOX4</i>, <i>HB8</i></td>
-<td>Does the phloem–xylem axial differentiation module verify — i.e. does this partition retain the vascular-conductive “stem” identity signature?<sup>25</sup></td>
-</tr>
-<tr>
-<td><b>C · Leaves</b></td>
+<td><b>L · Leaf</b><br/><span class="finer">n = 3</span></td>
 <td>Dithecous photosynthetic organ of mixed shoot–leaf identity, apical dominance lost</td>
 <td>Leaf determinacy and polarity: <i>ARP</i> (<i>AS1</i>), YABBY, CUC<br/>Apical stem cells: <i>STM</i>, <i>WUS</i>, <i>CLV3</i></td>
 <td>In the SAM-less state, do the stem-cell maintenance network and the terminal leaf-differentiation network show graded co-expression and overlap?<sup>17</sup></td>
 </tr>
+<tr>
+<td><b>Mixed</b><br/><span class="finer">count TBC</span></td>
+<td>Leaf and root together, including whatever lies between them</td>
+<td>All four modules, plus the vascular set <i>CLE41/44</i>, <i>PXY</i>, <i>WOX4</i>, <i>HB8</i><sup>25</sup></td>
+<td>Does a two-component mixture of L and R explain these samples? Genes with systematic positive residuals are candidates for transition-zone expression.</td>
+</tr>
 </tbody>
 </table>
 
-<div class="card-teal mt-4 text-center">
-Note the asymmetry: <b>A</b> and <b>C</b> test for <i>boundary collapse</i>; <b>B</b> tests for <i>boundary retention</i>. B is the internal control that keeps the whole design falsifiable.
+<div class="card-amber mt-4">
+<b>The design is now asymmetric in a way the proposal was not.</b> Both dissected classes test for boundary <i>collapse</i>; neither tests for boundary <i>retention</i>, because the tissue that would have done that was not sampled separately. The mixture residuals are the substitute, and they are weaker evidence — a modelling result rather than a measurement.
 </div>
 
 ---
@@ -461,13 +506,13 @@ Note the asymmetry: <b>A</b> and <b>C</b> test for <i>boundary collapse</i>; <b>
 <div class="space-y-3">
 
 <div class="card grid grid-cols-12 gap-4 items-center">
-<div class="col-span-5 fine"><b class="text-slate-800">Modules segregate cleanly by partition</b><br/>A = root markers, B = vascular, C = leaf markers, minimal overlap</div>
+<div class="col-span-5 fine"><b class="text-slate-800">Modules segregate cleanly by tissue</b><br/>R = root markers only, L = leaf markers only, minimal overlap</div>
 <div class="col-span-1 text-center arrow">→</div>
 <div class="col-span-6 fine">CRS holds at the molecular level. Fuzzy morphology is <b>not</b> supported for this species — a genuine and publishable negative result.</div>
 </div>
 
 <div class="card-teal grid grid-cols-12 gap-4 items-center">
-<div class="col-span-5 fine"><b class="text-slate-800">Graded co-expression of opposing modules</b><br/>e.g. KNOX1 and ARP both present in C; <i>STM</i>/<i>WUS</i> present in A</div>
+<div class="col-span-5 fine"><b class="text-slate-800">Graded co-expression of opposing modules</b><br/>KNOX1 and ARP both present in L; <i>STM</i>/<i>WUS</i> present in R</div>
 <div class="col-span-1 text-center arrow">→</div>
 <div class="col-span-6 fine">Molecular support for fuzzy morphology; identity is <b>continuous</b>, not categorical. This is what the prior literature predicts.</div>
 </div>
@@ -479,7 +524,7 @@ Note the asymmetry: <b>A</b> and <b>C</b> test for <i>boundary collapse</i>; <b>
 </div>
 
 <div class="card-amber grid grid-cols-12 gap-4 items-center">
-<div class="col-span-5 fine"><b class="text-slate-800">All three partitions look alike</b><br/>few DEGs anywhere</div>
+<div class="col-span-5 fine"><b class="text-slate-800">L and R look alike</b><br/>few DEGs between them</div>
 <div class="col-span-1 text-center arrow">→</div>
 <div class="col-span-6 fine">Suspect a <b>technical</b> cause first — dissection carryover or insufficient depth — before reaching for a biological one.</div>
 </div>
@@ -504,7 +549,7 @@ Note the asymmetry: <b>A</b> and <b>C</b> test for <i>boundary collapse</i>; <b>
 
 ### Steps
 
-1. **FastQC** on all 18 FASTQ files, aggregated with **MultiQC** for cross-library comparison
+1. **FastQC** on every FASTQ, aggregated with **MultiQC** for cross-library comparison
 2. **TrimGalore** (or Trimmomatic) — remove sequencing adapters and low-quality bases below **Phred Q 30**
 3. **Rcorrector** — k-mer error correction; discard reads unfixable through sequencing error or low complexity
 4. Re-run FastQC to confirm the trim actually improved the libraries
@@ -538,34 +583,37 @@ Assembly quality caps everything downstream, and de novo assembly has no referen
 
 <div class="col-span-3">
 
-<div class="grid grid-cols-2 gap-5">
+<div class="card-rose fine">
+<b>The QC narrowed this down.</b> The root–leaf GC gap is a <b>low-GC shoulder in the leaf</b> libraries, not extra high-GC material in the root. The open question moved to the <b>mixed</b> libraries, which sit outside the root–leaf range entirely.
+</div>
+
+<div class="grid grid-cols-2 gap-5 mt-3">
 
 <div>
 
-### Why this species is high-risk
+<div class="kicker">Why the risk is real here</div>
 
-- The plant is **submerged and epiphytised** — algal overgrowth is a documented decline driver<sup>3</sup>
-- Partition A is the **substrate-attached** tissue, in direct contact with biofilm
-- Cultivated NYBG material reduces but does not eliminate this
-- A contaminating alga contributes real transcripts that assemble cleanly and annotate confidently as “plant”
+- Submerged and epiphytised; algal overgrowth is a documented decline driver<sup>3</sup>
+- The **root** fraction sits on the substrate, in direct contact with biofilm
+- Algal transcripts assemble cleanly and annotate confidently as “plant”
 
 </div>
 
 <div>
 
-### Mitigation
+<div class="kicker">Mitigation</div>
 
-- Screen contigs by **taxonomic assignment of best hits** — flag those whose top hits are consistently algal, fungal or bacterial
-- Cross-check **GC content against coverage** — contaminants usually form a distinct cloud
-- Test whether flagged contigs are **partition-A-specific**
-- Report the flagged set transparently rather than deleting it silently
-
-</div>
+- Taxonomic assignment of contig best hits
+- **GC against coverage** — contaminants form a distinct cloud
+- Test whether flagged contigs are **root-specific**
+- Report the flagged set rather than deleting it
 
 </div>
 
-<div class="card-rose mt-4">
-<b>Open question:</b> filter contaminants before or after assembly? Pre-filtering is cleaner but risks discarding genuine low-coverage plant reads.
+</div>
+
+<div class="card-amber mt-3 fine">
+<b>Open question:</b> filter before or after assembly? Pre-filtering is cleaner but risks discarding genuine low-coverage plant reads.
 </div>
 
 </div>
@@ -589,7 +637,7 @@ Assembly quality caps everything downstream, and de novo assembly has no referen
 
 No reference genome exists for *P. ceratophyllum*, so the transcript reference has to be built from the reads themselves.
 
-**Trinity (v2.x)**<sup>24</sup> — de Bruijn graph assembly, run on **all nine libraries pooled**, so that a single common reference supports every cross-partition comparison.
+**Trinity (v2.x)**<sup>24</sup> — de Bruijn graph assembly, run on **all libraries pooled** (root, leaf and mixed), so that one common reference supports every comparison.
 
 <div class="card mt-4">
 Minimum k-mer coverage threshold set permissively, so <b>low-abundance regulatory transcripts</b> are still reconstructed. Transcription factors are exactly the class we cannot afford to lose.
@@ -602,15 +650,15 @@ Minimum k-mer coverage threshold set permissively, so <b>low-abundance regulator
 ### Decisions to settle
 
 <div class="card mb-3">
-<b>Pooled vs per-partition assembly.</b> Pooling gives one coordinate system for quantification; per-partition assembly recovers partition-specific isoforms but complicates comparison. I favour <b>pooled</b>, with per-partition assemblies kept as a diagnostic check only.
+<b>Pooled vs per-tissue assembly.</b> Pooling gives one coordinate system for quantification; per-tissue assembly recovers tissue-specific isoforms but complicates comparison. I favour <b>pooled</b>, with per-tissue assemblies kept as a diagnostic check only. Including the mixed samples in the pool matters here — they are the only libraries containing transition-zone transcripts.
 </div>
 
 <div class="card mb-3">
-<b>In-silico read normalisation.</b> Cuts memory and runtime substantially, at some cost to rare transcripts. Worth testing both on one partition before committing.
+<b>In-silico read normalisation.</b> Cuts memory and runtime substantially, at some cost to rare transcripts. Worth testing both on one tissue before committing.
 </div>
 
-<div class="card-amber">
-<b>Strand-specificity.</b> Setting <code>--SS_lib_type</code> correctly materially improves the assembly, and it depends on the library chemistry used. <b>I need the kit and protocol details to get this right.</b>
+<div class="card-rose">
+<b>Assembly scale.</b> At ~40 M PE reads per library, pooling everything is a large Trinity job — memory, not CPU, is the binding constraint. In-silico read normalisation moves from optional to necessary here; I will benchmark the cost to rare transcripts on one tissue before committing.
 </div>
 
 </div>
@@ -703,20 +751,25 @@ Domain architecture is more robust than raw similarity for our purpose: a diverg
 
 ### Method
 
-**Proteinortho** — combines sequence similarity with a graph-based reciprocal-best-hit criterion to infer orthologous groups across species.
+**Proteinortho** — sequence similarity plus a graph-based reciprocal-best-hit criterion, to infer orthologous groups across species.
 
 <div class="kicker mt-4">Reference proteomes</div>
 
 <div class="card mb-2 fine">
-<b>Arabidopsis thaliana</b> — the module definitions live here; all four marker networks are characterised in this system
+<b>Arabidopsis thaliana</b> — where the module definitions come from; all four marker networks are characterised here
 </div>
 
 <div class="card mb-2 fine">
-<b>Populus trichocarpa</b> — woody, well-annotated vascular cambium; the right reference for the CLE41/PXY/WOX4 module<sup>25</sup>
+<b>Populus trichocarpa</b> — woody, well-annotated cambium; the reference for the CLE41/PXY/WOX4 module<sup>25</sup>
 </div>
 
 <div class="card-teal fine">
-<b>Cladopus chinensis</b><sup>20</sup> — the only Podostemaceae genome; closest available relative and a direct control for family-level divergence
+<b>Cladopus chinensis</b><sup>20</sup> — the only sequenced nuclear genome in the family, and the closest available control for family-level divergence
+</div>
+
+<div class="pt-2">
+  <img src="./assets/fig-cladopus.jpg" class="rounded" style="max-height:5rem;margin:0 auto;display:block" />
+  <div class="cred">Xue et al. (2020) Fig. 1<sup>20</sup> — <i>Cladopus chinensis</i></div>
 </div>
 
 </div>
@@ -749,38 +802,36 @@ Domain architecture is more robust than raw similarity for our purpose: a diverg
 
 <div>
 
-### RSEM / Salmon → the 9 × N matrix
+### RSEM / Salmon → the expression matrix
 
-Map each library's clean reads back onto the de novo Unigene reference; compute **TPM** (or FPKM) for unbiased expression estimates across all nine samples.
+Map each library's clean reads back onto the de novo Unigene reference; compute **TPM** (or FPKM) for unbiased expression estimates across every sample, dissected and mixed alike.
 
 <div class="kicker mt-4">Quality gates before proceeding</div>
 
 - **Mapping rate per library** — a low outlier flags a problem replicate
-- **PCA and sample correlation heatmap** — replicates must cluster by partition, not by batch
+- **PCA and sample correlation heatmap** — replicates must cluster by tissue, not by batch; mixed samples should sit between L and R, not off on their own
 - **Library size and normalisation factors**
 
 <div class="card-rose mt-3">
-<b>If replicates do not cluster by partition, I stop here.</b> Every downstream result would be built on an unreliable grouping, and the honest response is to revisit the dissection rather than press on.
+<b>If replicates do not cluster by tissue, I stop here.</b> Every downstream result would be built on an unreliable grouping, and the honest response is to revisit the dissection rather than press on.
 </div>
 
 </div>
 
 <div>
 
-### DESeq2 — three pairwise contrasts
+### DESeq2 — one primary contrast
 
-<div class="grid grid-cols-3 gap-2 mb-3 text-center fine">
-  <div class="card">Thallus <span class="text-slate-400">vs</span> Stem</div>
-  <div class="card">Stem <span class="text-slate-400">vs</span> Leaves</div>
-  <div class="card">Thallus <span class="text-slate-400">vs</span> Leaves</div>
+<div class="grid grid-cols-1 gap-2 mb-3 text-center fine">
+  <div class="card-teal"><b>Root</b> <span class="text-slate-400">vs</span> <b>Leaf</b> &nbsp;·&nbsp; the whole test, 3 v 3</div>
 </div>
 
 <div class="fine mb-3">
-Significance at Benjamini–Hochberg adjusted <i>q</i> &lt; 0.05 and |log2FoldChange| ≥ 1. Partition-specific up-regulated clusters then go to GO and KEGG enrichment by hypergeometric test.
+Benjamini–Hochberg adjusted <i>q</i> &lt; 0.05 and |log2FoldChange| ≥ 1; tissue-specific up-regulated clusters then go to GO and KEGG enrichment. The mixed samples are held out of this contrast and used for the mixture-residual analysis instead — putting them in as a third group would only blur the comparison.
 </div>
 
 <div class="card-amber">
-<b>What DEG analysis cannot answer.</b> Pairwise DEGs answer <i>“where is this gene higher?”</i> — not <i>“what organ is this?”</i> Fuzzy morphology predicts <b>co-expression</b>: a gene present at comparable levels in all three partitions would be absent from every DEG list, yet is precisely the evidence for boundary collapse.
+<b>What DEG analysis cannot answer.</b> Pairwise DEGs answer <i>“where is this gene higher?”</i> — not <i>“what organ is this?”</i> Fuzzy morphology predicts <b>co-expression</b>: a gene at comparable levels in both root and leaf is absent from the DEG list entirely, yet is precisely the evidence for boundary collapse. With only one contrast left, this stops being a caveat and becomes the main reason the analysis cannot end here.
 </div>
 
 </div>
@@ -797,14 +848,14 @@ Significance at Benjamini–Hochberg adjusted <i>q</i> &lt; 0.05 and |log2FoldCh
 
 ### WGCNA co-expression modules
 
-Cluster Unigenes into modules of co-varying expression, independent of any pairwise contrast — then correlate module eigengenes with partition identity, locate the marker genes **inside** the module structure, and pull out hub genes as candidate regulatory drivers.
+Cluster Unigenes into modules of co-varying expression, independent of any pairwise contrast — then correlate module eigengenes with tissue identity, locate the marker genes **inside** the module structure, and pull out hub genes as candidate regulatory drivers.
 
 <div class="card-teal mt-3">
 If the SAM module and the leaf-determinacy module have <b>fused into a single co-expression module</b>, that is a far stronger statement about network topology than any list of individually significant genes.
 </div>
 
 <div class="card-amber mt-3">
-<b>Caveat.</b> WGCNA is designed for many samples. With n = 9 the module structure will be coarse, and must be treated as exploratory rather than as a confirmed network.
+<b>Caveat.</b> WGCNA is designed for many samples. Even counting the mixed samples we are in the low teens, so the module structure will be coarse and must be treated as exploratory rather than as a confirmed network.
 </div>
 
 </div>
@@ -814,15 +865,15 @@ If the SAM module and the leaf-determinacy module have <b>fused into a single co
 ### Three converging views
 
 <div class="card-violet mb-2 fine">
-<b>1 · Marker atlas.</b> Four canonical modules × three partitions, plotted in <b>absolute TPM</b> rather than fold change. This is the figure that answers Q2, and most likely the central figure of the paper.
+<b>1 · Marker atlas.</b> Four canonical modules × root, leaf and mixed, plotted in <b>absolute TPM</b> rather than fold change. This is the figure that answers Q2, and most likely the central figure of the paper.
 </div>
 
 <div class="card-violet mb-2 fine">
-<b>2 · Specificity index.</b> A per-gene τ-type tissue-specificity index across the three partitions — turning “fuzzy vs discrete” from a verbal claim into a <b>distribution</b>.
+<b>2 · Specificity index.</b> A per-gene τ-type tissue-specificity index across root and leaf — turning “fuzzy vs discrete” from a verbal claim into a <b>distribution</b>. Two tissues is the minimum τ needs, so this is a coarser measure than it would have been with three.
 </div>
 
 <div class="card-violet mb-2 fine">
-<b>3 · Cross-species comparison.</b> Correlate each partition's ortholog-restricted profile against published organ-specific transcriptomes<sup>21</sup>. Does the <i>Thallus</i> profile resemble a root, a stem, or neither?
+<b>3 · Cross-species comparison.</b> Correlate each tissue's ortholog-restricted profile against published organ-specific transcriptomes<sup>21</sup>. Does the root profile resemble a conventional root, a stem, or neither?
 </div>
 
 <div class="card fine">
@@ -894,7 +945,7 @@ NAC-family transcription factors act both in apical meristem development and CUC
 </div>
 
 <div class="card-rose">
-<b>No spatial resolution.</b> Bulk RNA-seq averages over every cell in a partition. Apparent co-expression of <i>STM</i> and <i>ARP</i> may reflect <b>two adjacent cell populations</b> rather than one mixed-identity cell. Distinguishing these needs in situ hybridisation<sup>12,13</sup> or single-cell methods — and the distinction is scientifically substantial.
+<b>No spatial resolution.</b> Bulk RNA-seq averages over every cell in a sample. Apparent co-expression of <i>STM</i> and <i>ARP</i> may reflect <b>two adjacent cell populations</b> rather than one mixed-identity cell. Distinguishing these needs in situ hybridisation<sup>12,13</sup> or single-cell methods — and the distinction is scientifically substantial.
 </div>
 
 <div class="card">
@@ -910,7 +961,7 @@ NAC-family transcription factors act both in apical meristem development and CUC
 </div>
 
 <div class="card-rose">
-<b>Partition boundaries are set by the hypothesis under test.</b> We separate partitions on morphological criteria, then ask whether those criteria correspond to molecular categories. Not circular — but partition assignment is an <b>assumption</b>, and carryover between adjacent partitions would bias toward the fuzzy result. This belongs in any write-up.
+<b>Tissue boundaries are set by the hypothesis under test.</b> Root and leaf were separated on morphological criteria, and we then ask whether those criteria correspond to molecular categories. Not circular — but the assignment is an <b>assumption</b>, and carryover at the dissection boundary would bias toward the fuzzy result. This belongs in any write-up.
 </div>
 
 <div class="card">
@@ -934,7 +985,7 @@ NAC-family transcription factors act both in apical meristem development and CUC
 
 <div class="stage-row">
 <div class="stage-num">2</div>
-<div class="card fine">The design is falsifiable in both directions, and partition <b>B</b> is the internal control that keeps it so.</div>
+<div class="card fine">The dissected classes are <b>root and leaf only</b> — the stem partition the proposal relied on as an internal control was not sampled. Mixture-residual analysis of the mixed samples is the substitute, and it is weaker.</div>
 </div>
 
 <div class="stage-row">
@@ -990,7 +1041,7 @@ NAC-family transcription factors act both in apical meristem development and CUC
 
 ---
 
-# References — 14 to 26
+# References — 14 to 30
 
 <div class="reflist">
 
@@ -1019,6 +1070,14 @@ NAC-family transcription factors act both in apical meristem development and CUC
 <div><span class="refn">25</span>Galibina, N. A., Moshchenskaya, Y. L., Tarelkina, T. V. et al. (2023) Identification and expression profile of CLE41/44-PXY-WOX genes in adult trees <i>Pinus sylvestris</i> L. trunk tissues during cambial activity. <i>Plants</i> <b>12</b>(4): 835.</div>
 
 <div><span class="refn">26</span>Nuruzzaman, M., Sharoni, A. M. &amp; Kikuchi, S. (2013) Roles of NAC transcription factors in the regulation of biotic and abiotic stress responses in plants. <i>Frontiers in Microbiology</i> <b>4</b>: 248.</div>
+
+<div><span class="refn">27</span>Zhang, M., Zhang, X.-H., Ge, C.-L. &amp; Chen, B.-H. (2022) <i>Terniopsis yongtaiensis</i> (Podostemaceae), a new species from South East China based on morphological and genomic data. <i>PhytoKeys</i> <b>194</b>: 105–122.</div>
+
+<div><span class="refn">28</span>Wu, M., Zhang, K., Yang, X., Qian, X., Li, R. &amp; Wei, J. (2022) <i>Paracladopus chiangmaiensis</i> (Podostemaceae), a new generic record for China and its complete plastid genome. <i>PhytoKeys</i> <b>195</b>: 1–13.</div>
+
+<div><span class="refn">29</span>Trad, R. J., Cabral, F. N., Bittrich, V., da Silva, S. R. &amp; do Amaral, M. C. E. (2021) Calophyllaceae plastomes, their structure and insights in relationships within the clusioids. <i>Scientific Reports</i> <b>11</b>: 20712.</div>
+
+<div><span class="refn">30</span>Yu, H., Zhang, J., Qian, Z., Lv, Y., Wang, Y. &amp; Xu, W. (2025) Characterization of the complete chloroplast genome of <i>Cladopus doianus</i> Koriba. <i>Mitochondrial DNA Part B</i> <b>10</b>(12): 1210–1215.</div>
 
 </div>
 

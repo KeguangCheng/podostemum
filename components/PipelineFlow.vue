@@ -5,14 +5,14 @@ const STAGES = [
   {
     n: '1', title: 'Quality control', tone: 'slate',
     nodes: ['FastQC / MultiQC', 'TrimGalore', 'Rcorrector', 'Contamination screen'],
-    detail: 'All 18 FASTQ files through FastQC, aggregated with MultiQC for cross-library comparison. Adapters and bases below Q 30 removed; k-mer error correction, discarding reads that cannot be fixed. Contigs then screened for algal, fungal and bacterial contamination by taxonomic assignment of best hits and by GC-versus-coverage distribution.',
-    risk: 'Partition A sits directly on the biofilm. Epiphytic algal transcripts assemble cleanly and annotate confidently as "plant".',
+    detail: 'Every FASTQ through FastQC, aggregated with MultiQC for cross-library comparison. Adapters and bases below Q 30 removed; k-mer error correction, discarding reads that cannot be fixed. Contigs then screened for algal, fungal and bacterial contamination by taxonomic assignment of best hits and by GC-versus-coverage distribution.',
+    risk: 'The root samples sit directly on the biofilm. Epiphytic algal transcripts assemble cleanly and annotate confidently as "plant", and non-stranded libraries give no strand signal to help separate them.',
   },
   {
     n: '2', title: 'De novo assembly', tone: 'teal',
     nodes: ['Trinity v2.x', 'CD-HIT-EST', 'BUSCO + ExN50', 'TransDecoder'],
-    detail: 'All nine libraries pooled into one de Bruijn graph assembly, giving a single coordinate system for every downstream comparison. CD-HIT-EST at 0.95–0.99 identity yields the Unigene set. Assembly quality read from BUSCO (embryophyta_odb10), ExN50 and read-representation rate together. TransDecoder predicts CDS and peptides.',
-    risk: 'Library chemistry is needed to set --SS_lib_type correctly; and elevated mutation rates in this family will depress BUSCO for biological reasons, so it cannot be read alone.',
+    detail: 'All libraries pooled — root, leaf and mixed — into one de Bruijn graph assembly, giving a single coordinate system for every downstream comparison. Libraries are non-stranded, so no --SS_lib_type setting applies. CD-HIT-EST at 0.95-0.99 identity yields the Unigene set. Assembly quality read from BUSCO (embryophyta_odb10), ExN50 and read-representation rate together. TransDecoder predicts CDS and peptides.',
+    risk: 'At ~40M PE reads per library the pooled assembly is memory-bound, so in-silico normalisation is effectively required. And elevated mutation rates in this family depress BUSCO for biological reasons, so it cannot be read alone.',
   },
   {
     n: '3', title: 'Annotation and orthology', tone: 'rose',
@@ -23,8 +23,8 @@ const STAGES = [
   {
     n: '4', title: 'Quantification and readout', tone: 'violet',
     nodes: ['RSEM / Salmon', 'DESeq2', 'WGCNA', 'Identity atlas'],
-    detail: 'Reads mapped back onto the Unigene reference for TPM, giving the 9 × N matrix. DESeq2 runs the three pairwise contrasts at q < 0.05 and |log2FC| ≥ 1. WGCNA clusters co-expression modules and locates the marker genes inside them. The final readout combines the marker atlas, a tissue-specificity index and cross-species correlation.',
-    risk: 'DEG analysis answers "where is this gene higher". Fuzzy morphology predicts co-expression — a gene present in all three partitions appears in no DEG list at all.',
+    detail: 'Reads mapped back onto the Unigene reference for TPM. DESeq2 runs the single root-versus-leaf contrast at q < 0.05 and |log2FC| >= 1. The mixed samples are held out and fitted as a two-component mixture of root and leaf; genes the mixture cannot explain are candidates for transition-zone expression. WGCNA, the marker atlas and a tissue-specificity index complete the readout.',
+    risk: 'DEG analysis answers "where is this gene higher". Fuzzy morphology predicts co-expression — a gene present in both root and leaf appears in no DEG list at all.',
   },
 ]
 
@@ -37,7 +37,7 @@ const active = ref(0)
       <button
         v-for="(s, i) in STAGES" :key="s.n"
         class="pf-stage" :class="['t-' + s.tone, { on: active === i }]"
-        @click="active = i"
+        @click="active = i; $event.currentTarget.blur()"
       >
         <span class="pf-n">{{ s.n }}</span>
         <span class="pf-t">{{ s.title }}</span>

@@ -37,9 +37,9 @@ const fuzzy = computed(() => {
 
 const zone = computed(() => {
   const x = pos.value
-  if (x < 0.34) return { name: 'A · Thallus — root / anchoring zone', color: '#15803d' }
-  if (x < 0.66) return { name: 'B · Vegetative Stem — putative stem', color: '#0369a1' }
-  return { name: 'C · Leaves — dithecous leaf', color: '#b45309' }
+  if (x < 0.34) return { name: 'R · Root — dissected, n = 3', color: '#15803d', sampled: true }
+  if (x < 0.66) return { name: 'Not dissected — mixed samples only', color: '#be123c', sampled: false }
+  return { name: 'L · Leaf — dissected, n = 3', color: '#b45309', sampled: true }
 })
 
 const pct = v => Math.round(Math.min(1, Math.max(0, v)) * 100)
@@ -52,7 +52,18 @@ const pct = v => Math.round(Math.min(1, Math.max(0, v)) * 100)
       <span class="ic-zone" :style="{ color: zone.color, borderColor: zone.color }">{{ zone.name }}</span>
     </div>
 
-    <input class="ic-slider" type="range" min="0" max="1" step="0.01" v-model.number="pos" />
+    <input
+      class="ic-slider" type="range" min="0" max="1" step="0.01"
+      v-model.number="pos"
+      @change="$event.target.blur()"
+      @mouseup="$event.target.blur()"
+    />
+
+    <div class="ic-cover">
+      <div class="ic-seg ic-seg-on"  style="flex:34">R · dissected</div>
+      <div class="ic-seg ic-seg-off" style="flex:32">transition zone — not sampled separately</div>
+      <div class="ic-seg ic-seg-on"  style="flex:34">L · dissected</div>
+    </div>
 
     <div class="ic-axis">
       <span>Base · attached to rock</span>
@@ -82,7 +93,7 @@ const pct = v => Math.round(Math.min(1, Math.max(0, v)) * 100)
     </div>
 
     <div class="ic-foot">
-      Schematic, not measured data — but it states exactly the two alternatives the TPM atlas has to tell apart.
+      Schematic, not measured data — it states the two alternatives the TPM atlas has to tell apart. Note that the middle of the axis, where the two models disagree most, is the part the dissection did not resolve.
     </div>
   </div>
 </template>
@@ -97,6 +108,15 @@ const pct = v => Math.round(Math.min(1, Math.max(0, v)) * 100)
 .ic-slider { width: 100%; accent-color: #0d9488; height: 1.1rem; cursor: pointer; }
 
 .ic-axis { display: flex; justify-content: space-between; color: #94a3b8; font-size: 0.64rem; margin-bottom: 0.7rem; }
+
+.ic-cover { display: flex; gap: 2px; margin-top: 0.15rem; margin-bottom: 0.2rem; }
+.ic-seg {
+  font-size: 0.58rem; text-align: center; padding: 0.12rem 0.2rem;
+  border-radius: 3px; line-height: 1.25; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis;
+}
+.ic-seg-on  { background: #ccfbf1; color: #0f766e; }
+.ic-seg-off { background: #ffe4e6; color: #9f1239; }
 
 .ic-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
 
