@@ -12,23 +12,23 @@ const STAGES = [
   {
     n: '2', title: 'De novo assembly', tone: 'teal',
     nodes: ['Trinity v2.x', 'CD-HIT-EST', 'BUSCO + ExN50', 'TransDecoder'],
-    detail: 'All nine libraries pooled — root, “stem” and leaf — into one de Bruijn graph assembly, giving a single coordinate system for every downstream comparison. Libraries are non-stranded, so no --SS_lib_type setting applies. CD-HIT-EST at 0.95-0.99 identity yields the Unigene set. Assembly quality read from BUSCO (embryophyta_odb10), ExN50 and read-representation rate together. TransDecoder predicts CDS and peptides.',
-    short: 'Pooled assembly is memory-bound; and this family’s elevated mutation rate depresses BUSCO for biological reasons.',
-    risk: 'At ~40M PE reads per library the pooled assembly is memory-bound, so in-silico normalisation is effectively required. And elevated mutation rates in this family depress BUSCO for biological reasons, so it cannot be read alone.',
+    detail: 'All nine libraries pooled (root, “stem” and leaf) into one de Bruijn graph assembly, giving a single coordinate system for every downstream comparison. Libraries are non-stranded, so no --SS_lib_type setting applies. CD-HIT-EST at 0.95-0.99 identity yields the Unigene set. Assembly quality read from BUSCO (embryophyta_odb10), ExN50 and read-representation rate together. TransDecoder predicts CDS and peptides.',
+    short: 'BUSCO runs low in this family for biological reasons, so a poor score does not by itself mean a poor assembly.',
+    risk: 'With 512 GB available the pooled assembly fits in memory, so normalisation becomes a way to cut runtime rather than a requirement. The remaining risk is how the assembly is judged: elevated substitution rates and real gene loss in this family depress BUSCO, so a low score cannot be read as a failed assembly on its own.',
   },
   {
     n: '3', title: 'Annotation and orthology', tone: 'rose',
     nodes: ['BLASTX: NR / Swiss-Prot', 'Pfam domains', 'GO / KEGG', 'Proteinortho + gene trees'],
     detail: 'BLASTX at E ≤ 1e-5 against NR and Swiss-Prot, Pfam for domain architecture, TopGO and KOBAS for GO and KEGG enrichment. Orthologous groups inferred with Proteinortho against Arabidopsis thaliana, Populus trichocarpa and Cladopus chinensis.',
-    short: 'Best-hit BLAST cannot separate WUS from WOX4 from WOX5 — and that separation is the experiment.',
-    risk: 'Under high divergence and deep paralogy, best-hit BLAST cannot separate WUS from WOX4 from WOX5 — and that separation is the experiment. Marker families get profile-HMM recall plus gene-tree placement instead.',
+    short: 'Best-hit BLAST cannot separate WUS from WOX4 from WOX5, and that separation is the experiment.',
+    risk: 'Under high divergence and deep paralogy, best-hit BLAST cannot separate WUS from WOX4 from WOX5, and that separation is the experiment. Marker families get profile-HMM recall plus gene-tree placement instead.',
   },
   {
     n: '4', title: 'Quantification and readout', tone: 'violet',
     nodes: ['RSEM / Salmon', 'DESeq2', 'WGCNA', 'Identity atlas'],
     detail: 'Reads mapped back onto the Unigene reference for TPM. DESeq2 runs three pairwise contrasts across the three tissues at q < 0.05 and |log2FC| >= 1, plus a likelihood-ratio test for any tissue effect. WGCNA, the marker atlas and a tissue-specificity index complete the readout.',
     short: 'DEGs answer “where is it higher”; the prediction is co-expression, which no DEG list contains.',
-    risk: 'DEG analysis answers "where is this gene higher". Fuzzy morphology predicts co-expression — a gene present in both root and leaf appears in no DEG list at all.',
+    risk: 'DEG analysis answers "where is this gene higher". Fuzzy morphology predicts co-expression, and a gene present in both root and leaf appears in no DEG list at all.',
   },
 ]
 

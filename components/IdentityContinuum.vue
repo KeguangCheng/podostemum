@@ -37,9 +37,9 @@ const fuzzy = computed(() => {
 
 const zone = computed(() => {
   const x = pos.value
-  if (x < 0.34) return { name: 'R · Root — dissected, n = 3', color: '#15803d', sampled: true }
-  if (x < 0.66) return { name: 'S · “Stem” — dissected, n = 3', color: '#7c3aed', sampled: true }
-  return { name: 'L · Leaf — dissected, n = 3', color: '#b45309', sampled: true }
+  if (x < 0.34) return { name: 'R · Root · dissected, n = 3', color: '#15803d', sampled: true }
+  if (x < 0.66) return { name: 'S · “Stem” · dissected, n = 3', color: '#7c3aed', sampled: true }
+  return { name: 'L · Leaf · dissected, n = 3', color: '#b45309', sampled: true }
 })
 
 const pct = v => Math.round(Math.min(1, Math.max(0, v)) * 100)
@@ -48,7 +48,7 @@ const pct = v => Math.round(Math.min(1, Math.max(0, v)) * 100)
 <template>
   <div class="ic">
     <div class="ic-head">
-      <span class="ic-hint">Drag the slider — move from the base of the plant to the distal tip</span>
+      <span class="ic-hint">Drag the slider to move from the base of the plant to the distal tip</span>
       <span class="ic-zone" :style="{ color: zone.color, borderColor: zone.color }">{{ zone.name }}</span>
     </div>
 
@@ -93,7 +93,7 @@ const pct = v => Math.round(Math.min(1, Math.max(0, v)) * 100)
     </div>
 
     <div class="ic-foot">
-      Schematic, not measured data — it states the two alternatives the TPM atlas has to tell apart. The middle of the axis, where the two models disagree most, is sampled in its own right — so the atlas can be read there directly rather than inferred.
+      Schematic, not measured data. It states the two alternatives the TPM atlas has to tell apart. The middle of the axis, where the two models disagree most, is sampled in its own right, so the atlas can be read there directly rather than inferred.
     </div>
   </div>
 </template>
